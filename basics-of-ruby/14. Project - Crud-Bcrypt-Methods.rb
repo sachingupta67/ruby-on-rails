@@ -33,4 +33,18 @@ def create_secure_users(list_of_users)
     list_of_users
 end
 
-puts create_secure_users(users)
+new_secure_users = create_secure_users(users)
+puts new_secure_users
+def authenticate_user(username,password,list_of_users)
+    list_of_users.each do |user|
+        #match the name
+        if user[:name] == username && verify_hash_digest(user[:password])==password
+            puts '::::::::::::user authenticated::::::::'
+            return user
+        end
+    end
+    "Credential are not correct"
+end
+
+puts authenticate_user('ramesh','password',new_secure_users)
+puts authenticate_user('ramesh','ssss',new_secure_users)
